@@ -17,10 +17,8 @@ from prediction_rules import STRATEGIES, build_prediction_plan, format_plan
 BASE_URL = os.environ.get("AI_BASE_URL") or "https://aihubmix.com/v1"
 API_KEY = os.environ.get("AI_API_KEY")
 MODELS = [
-    {"id": "gpt-4o", "name": "GPT-4o", "model_id": "gpt-4o"},
-    {"id": "claude-sonnet-4-6", "name": "Claude Sonnet 4.6", "model_id": "claude-sonnet-4-6"},
-    {"id": "gemini-2.5-flash", "name": "Gemini 2.5 Flash", "model_id": "gemini-2.5-flash", "timeout": 180.0},
-    {"id": "deepseek-chat", "name": "DeepSeek Chat", "model_id": "deepseek-chat"},
+    {"id": "deepseek-chat", "name": "DeepSeek V3", "model_id": "deepseek-chat"},
+    {"id": "deepseek-reasoner", "name": "DeepSeek R1", "model_id": "deepseek-reasoner"},
 ]
 SCRIPT_DIR = Path(__file__).resolve().parent
 LOTTERY_HISTORY_FILE = SCRIPT_DIR / "data/lottery_history.json"
