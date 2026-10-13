@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """基于已验证候选生成下一期预测；失败时不覆盖已有预测。"""
 import copy
 import hashlib
