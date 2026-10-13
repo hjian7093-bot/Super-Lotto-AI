@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 主应用逻辑 - 大乐透版本
  */
 
@@ -232,7 +232,7 @@ function renderAccuracyChart() {
                 ctx.moveTo(active.element.x, chartArea.top);
                 ctx.lineTo(active.element.x, chartArea.bottom);
                 ctx.strokeStyle = '#c7d2fe';
-                ctx.lineWidth: 1;
+                ctx.lineWidth = 1;
                 ctx.setLineDash([4, 4]);
                 ctx.stroke();
                 ctx.restore();
@@ -736,3 +736,4 @@ if (document.readyState === 'loading') {
 } else {
     initApp();
 }
+

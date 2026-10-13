@@ -1,4 +1,4 @@
-/**
+﻿/**
  * UI 组件模块 - 大乐透版本
  * 负责生成和渲染各种 UI 组件
  */
@@ -156,7 +156,7 @@ const Components = {
         // 后区2个蓝球
         const backHitSet = new Set(hitResult?.backHits || []);
         prediction.back_balls.forEach(num => {
-            ballsContainer.appendChild(this.createLotteryBall(num, 'blue', 'md', backHitSet.has(num));
+            ballsContainer.appendChild(this.createLotteryBall(num, 'blue', 'md', backHitSet.has(num)));
         });
 
         row.appendChild(ballsContainer);
@@ -406,3 +406,4 @@ const Components = {
         };
     }
 };
+
