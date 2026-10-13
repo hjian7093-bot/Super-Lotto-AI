@@ -362,7 +362,7 @@ const Components = {
         const ballsContainer = document.createElement('div');
         ballsContainer.className = 'balls-cell';
 
-        draw.front_balls.forEach(num => {
+        (draw.front_balls || []).forEach(num => {
             ballsContainer.appendChild(this.createLotteryBall(num, 'red', 'sm'));
         });
 
@@ -370,7 +370,7 @@ const Components = {
         divider.style.width = '8px';
         ballsContainer.appendChild(divider);
 
-        draw.back_balls.forEach(num => {
+        (draw.back_balls || []).forEach(num => {
             ballsContainer.appendChild(this.createLotteryBall(num, 'blue', 'sm'));
         });
 
@@ -406,4 +406,5 @@ const Components = {
         };
     }
 };
+
 
