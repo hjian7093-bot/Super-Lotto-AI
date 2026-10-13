@@ -1,5 +1,5 @@
 /**
- * UI 组件模块 - 新UI版本
+ * UI 组件模块 - 大乐透版本
  * 负责生成和渲染各种 UI 组件
  */
 
@@ -53,8 +53,6 @@ const Components = {
         card.className = 'model-card';
 
         const headerClass = this.getModelHeaderClass(model.model_name);
-
-        // 清理 model_id 以生成有效的 DOM ID（移除特殊字符）
         const safeModelId = model.model_id.replace(/[^a-zA-Z0-9-_]/g, '-');
 
         // 计算最佳命中（如果已开奖）
@@ -106,7 +104,6 @@ const Components = {
             </div>
         `;
 
-        // 添加策略行
         const strategiesContainer = card.querySelector(`#strategies-${safeModelId}`);
         model.predictions.forEach((prediction, index) => {
             const isBest = actualResult && prediction.group_id === bestGroupId;
@@ -118,23 +115,16 @@ const Components = {
 
     /**
      * 创建策略行
-     * @param {Object} prediction - 预测数据
-     * @param {boolean} isLast - 是否是最后一个
-     * @param {Object} actualResult - 实际开奖结果（可选）
-     * @param {boolean} isBest - 是否是最佳预测组
-     * @returns {HTMLElement} 策略行元素
      */
     createStrategyRow(prediction, isLast = false, actualResult = null, isBest = false) {
         const row = document.createElement('div');
         row.className = 'strategy-row';
 
-        // 计算命中结果（如果已开奖）
         let hitResult = null;
         if (actualResult) {
             hitResult = this.compareNumbers(prediction, actualResult);
         }
 
-        // 创建头部
         const header = document.createElement('div');
         header.className = 'strategy-header';
         header.innerHTML = `
@@ -143,8 +133,8 @@ const Components = {
                 <span class="strategy-name">${prediction.strategy}</span>
                 ${hitResult ? `
                     <div class="strategy-hit-stats">
-                        <span class="hit-stat red">${hitResult.redHitCount}红</span>
-                        <span class="hit-stat ${hitResult.blueHit ? 'blue' : 'miss'}">${hitResult.blueHit ? '1' : '0'}蓝</span>
+                        <span class="hit-stat red">${hitResult.frontHitCount}前</span>
+                        <span class="hit-stat ${hitResult.backHitCount > 0 ? 'blue' : 'miss'}">${hitResult.backHitCount}后</span>
                     </div>
                 ` : ''}
             </div>
@@ -155,25 +145,27 @@ const Components = {
         const ballsContainer = document.createElement('div');
         ballsContainer.className = 'strategy-balls';
 
-        prediction.red_balls.forEach(num => {
-            const isHit = hitResult?.redHits?.includes(num);
+        // 前区5个红球
+        prediction.front_balls.forEach(num => {
+            const isHit = hitResult?.frontHits?.includes(num);
             ballsContainer.appendChild(this.createLotteryBall(num, 'red', 'md', isHit));
         });
 
         ballsContainer.appendChild(this.createBallDivider());
 
-        const blueHit = hitResult?.blueHit || false;
-        ballsContainer.appendChild(this.createLotteryBall(prediction.blue_ball, 'blue', 'md', blueHit));
+        // 后区2个蓝球
+        const backHitSet = new Set(hitResult?.backHits || []);
+        prediction.back_balls.forEach(num => {
+            ballsContainer.appendChild(this.createLotteryBall(num, 'blue', 'md', backHitSet.has(num));
+        });
 
         row.appendChild(ballsContainer);
 
-        // 创建描述
         const desc = document.createElement('p');
         desc.className = 'strategy-description';
         desc.textContent = prediction.description;
         row.appendChild(desc);
 
-        // 添加分隔符 (最后一个除外)
         if (!isLast) {
             const separator = document.createElement('div');
             separator.className = 'strategy-separator';
@@ -185,8 +177,6 @@ const Components = {
 
     /**
      * 创建准确度卡片 (历史预测对比)
-     * @param {Object} record - 历史记录
-     * @returns {HTMLElement} 准确度卡片元素
      */
     createAccuracyCard(record) {
         const card = document.createElement('div');
@@ -196,13 +186,12 @@ const Components = {
         if (!result) return card;
         const isSimulation = record.data_source === 'random_simulation';
 
-        // 卡片头部
         const header = document.createElement('div');
         header.className = 'accuracy-card-header';
         header.innerHTML = `
             <div class="accuracy-header-left">
                 <div class="accuracy-trophy-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
                     </svg>
                 </div>
@@ -227,11 +216,13 @@ const Components = {
 
         const actualBalls = document.createElement('div');
         actualBalls.className = 'actual-result-balls';
-        result.red_balls.forEach(num => {
+        result.front_balls.forEach(num => {
             actualBalls.appendChild(this.createLotteryBall(num, 'red', 'md'));
         });
         actualBalls.appendChild(this.createBallDivider());
-        actualBalls.appendChild(this.createLotteryBall(result.blue_ball, 'blue', 'md'));
+        result.back_balls.forEach(num => {
+            actualBalls.appendChild(this.createLotteryBall(num, 'blue', 'md'));
+        });
         actualSection.appendChild(actualBalls);
 
         card.appendChild(actualSection);
@@ -251,19 +242,12 @@ const Components = {
 
     /**
      * 创建模型命中项
-     * @param {Object} model - 模型数据
-     * @param {number} index - 索引
-     * @param {boolean} isLast - 是否最后一个
-     * @returns {HTMLElement} 模型命中项元素
      */
     createModelHitItem(model, index, isLast = false) {
         const item = document.createElement('div');
         item.className = 'model-hit-item';
 
-        // 计算最佳命中数
         const bestHit = Math.max(...model.predictions.map(p => p.hit_result?.total_hits || 0));
-
-        // 清理 model_id 以生成有效的 DOM ID
         const safeModelId = model.model_id.replace(/[^a-zA-Z0-9-_]/g, '-');
 
         item.innerHTML = `
@@ -286,7 +270,6 @@ const Components = {
             </div>
         `;
 
-        // 添加预测组
         const groupsContainer = item.querySelector(`#groups-${safeModelId}`);
         model.predictions.forEach(prediction => {
             groupsContainer.appendChild(this.createPredictionGroupRow(prediction));
@@ -297,8 +280,6 @@ const Components = {
 
     /**
      * 创建预测组行
-     * @param {Object} prediction - 预测数据
-     * @returns {HTMLElement} 预测组行元素
      */
     createPredictionGroupRow(prediction) {
         const row = document.createElement('div');
@@ -307,7 +288,6 @@ const Components = {
 
         row.className = `prediction-group-row${isWinning ? ' winning' : ''}`;
 
-        // 球容器
         const ballsContainer = document.createElement('div');
         ballsContainer.className = 'prediction-group-balls';
         ballsContainer.innerHTML = `
@@ -317,18 +297,23 @@ const Components = {
         const ballsList = document.createElement('div');
         ballsList.className = 'prediction-group-balls-list';
 
-        prediction.red_balls.forEach(num => {
-            const isHit = prediction.hit_result?.red_hits?.includes(num);
+        // 前区5个
+        prediction.front_balls.forEach(num => {
+            const isHit = prediction.hit_result?.front_hits?.includes(num);
             const miniBall = document.createElement('div');
             miniBall.className = `mini-ball${isHit ? ' hit' : ''}`;
             miniBall.textContent = num;
             ballsList.appendChild(miniBall);
         });
 
-        const blueBall = document.createElement('div');
-        blueBall.className = `mini-ball blue${prediction.hit_result?.blue_hit ? ' hit' : ''}`;
-        blueBall.textContent = prediction.blue_ball;
-        ballsList.appendChild(blueBall);
+        // 后区2个
+        const backHitSet = new Set(prediction.hit_result?.back_hits || []);
+        prediction.back_balls.forEach(num => {
+            const miniBall = document.createElement('div');
+            miniBall.className = `mini-ball blue${backHitSet.has(num) ? ' hit' : ''}`;
+            miniBall.textContent = num;
+            ballsList.appendChild(miniBall);
+        });
 
         ballsContainer.appendChild(ballsList);
         row.appendChild(ballsContainer);
@@ -337,18 +322,18 @@ const Components = {
         const stats = document.createElement('div');
         stats.className = 'prediction-group-stats';
 
-        const redHitCount = prediction.hit_result?.red_hit_count || 0;
-        const blueHit = prediction.hit_result?.blue_hit || false;
+        const frontHitCount = prediction.hit_result?.front_hit_count || 0;
+        const backHitCount = prediction.hit_result?.back_hit_count || 0;
 
         stats.innerHTML = `
             <div class="stat-item">
-                <span class="stat-value ${redHitCount > 0 ? 'has-hit' : 'no-hit'}">${redHitCount}</span>
-                <span class="stat-label">红</span>
+                <span class="stat-value ${frontHitCount > 0 ? 'has-hit' : 'no-hit'}">${frontHitCount}</span>
+                <span class="stat-label">前</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-value ${blueHit ? 'blue-hit' : 'no-hit'}">${blueHit ? 1 : 0}</span>
-                <span class="stat-label">蓝</span>
+                <span class="stat-value ${backHitCount > 0 ? 'blue-hit' : 'no-hit'}">${backHitCount}</span>
+                <span class="stat-label">后</span>
             </div>
         `;
         row.appendChild(stats);
@@ -358,19 +343,15 @@ const Components = {
 
     /**
      * 创建历史表格行
-     * @param {Object} draw - 开奖数据
-     * @returns {HTMLElement} 表格行元素
      */
     createHistoryTableRow(draw) {
         const row = document.createElement('tr');
 
-        // 期号
         const periodCell = document.createElement('td');
         periodCell.className = 'period-cell';
         periodCell.textContent = draw.period;
         row.appendChild(periodCell);
 
-        // 日期
         const dateCell = document.createElement('td');
         dateCell.className = 'date-cell';
         dateCell.textContent = draw.date;
@@ -381,7 +362,7 @@ const Components = {
         const ballsContainer = document.createElement('div');
         ballsContainer.className = 'balls-cell';
 
-        draw.red_balls.forEach(num => {
+        draw.front_balls.forEach(num => {
             ballsContainer.appendChild(this.createLotteryBall(num, 'red', 'sm'));
         });
 
@@ -389,7 +370,9 @@ const Components = {
         divider.style.width = '8px';
         ballsContainer.appendChild(divider);
 
-        ballsContainer.appendChild(this.createLotteryBall(draw.blue_ball, 'blue', 'sm'));
+        draw.back_balls.forEach(num => {
+            ballsContainer.appendChild(this.createLotteryBall(num, 'blue', 'sm'));
+        });
 
         ballsCell.appendChild(ballsContainer);
         row.appendChild(ballsCell);
@@ -399,26 +382,27 @@ const Components = {
 
     /**
      * 比较预测号码与实际开奖结果
-     * @param {Object} prediction - 预测数据
-     * @param {Object} actualResult - 实际开奖结果
-     * @returns {Object} 命中信息
+     * 大乐透：前区5个(1-35) + 后区2个(1-12)
      */
     compareNumbers(prediction, actualResult) {
         if (!actualResult) {
             return null;
         }
 
-        const redHits = prediction.red_balls.filter(ball =>
-            actualResult.red_balls.includes(ball)
+        const frontHits = prediction.front_balls.filter(ball =>
+            actualResult.front_balls.includes(ball)
         );
 
-        const blueHit = prediction.blue_ball === actualResult.blue_ball;
+        const backHits = prediction.back_balls.filter(ball =>
+            actualResult.back_balls.includes(ball)
+        );
 
         return {
-            redHits: redHits,
-            redHitCount: redHits.length,
-            blueHit: blueHit,
-            totalHits: redHits.length + (blueHit ? 1 : 0)
+            frontHits: frontHits,
+            frontHitCount: frontHits.length,
+            backHits: backHits,
+            backHitCount: backHits.length,
+            totalHits: frontHits.length + backHits.length
         };
     }
 };

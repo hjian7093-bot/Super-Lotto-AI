@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>双色球 AI 预测</title>
+    <title>大乐透 AI 预测</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=20260922a">
+    <link rel="stylesheet" href="css/style.css?v=20261013a">
 </head>
 <body>
     <!-- Loading Screen -->
@@ -25,9 +25,9 @@
                         <div class="navbar-logo">🎟️</div>
                         <div class="navbar-title-wrapper">
                             <span class="navbar-title">
-                                双色球<span class="highlight">AI</span>预测
+                                大乐透<span class="highlight">AI</span>预测
                             </span>
-                            <span class="navbar-subtitle">Double Color Ball</span>
+                            <span class="navbar-subtitle">Super Lotto</span>
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                                         </svg>
-                                        <span id="heroDrawTime">21:15 开奖</span>
+                                        <span id="heroDrawTime">21:25 开奖</span>
                                     </div>
                                 </div>
                             </div>
@@ -168,46 +168,46 @@
                                 <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
                             </svg>
                         </div>
-                        <h3>双色球中奖规则说明</h3>
+                        <h3>大乐透中奖规则说明</h3>
                     </div>
                     <div class="prize-rules-content">
                         <div class="prize-rules-grid">
                             <div class="prize-rule-item">
                                 <div class="prize-level">一等奖</div>
-                                <div class="prize-condition">6+1</div>
-                                <div class="prize-desc">6个红球 + 1个蓝球</div>
+                                <div class="prize-condition">5+2</div>
+                                <div class="prize-desc">5个前区 + 2个后区</div>
                             </div>
                             <div class="prize-rule-item">
                                 <div class="prize-level">二等奖</div>
-                                <div class="prize-condition">6+0</div>
-                                <div class="prize-desc">6个红球</div>
+                                <div class="prize-condition">5+1</div>
+                                <div class="prize-desc">5个前区 + 1个后区</div>
                             </div>
                             <div class="prize-rule-item">
                                 <div class="prize-level">三等奖</div>
-                                <div class="prize-condition">5+1</div>
-                                <div class="prize-desc">5个红球 + 1个蓝球</div>
+                                <div class="prize-condition">5+0</div>
+                                <div class="prize-desc">5个前区</div>
                             </div>
                             <div class="prize-rule-item">
                                 <div class="prize-level">四等奖</div>
-                                <div class="prize-condition">5+0 / 4+1</div>
-                                <div class="prize-desc">5个红球 或 4红+1蓝</div>
+                                <div class="prize-condition">4+2</div>
+                                <div class="prize-desc">4个前区 + 2个后区</div>
                             </div>
                             <div class="prize-rule-item">
                                 <div class="prize-level">五等奖</div>
-                                <div class="prize-condition">4+0 / 3+1</div>
-                                <div class="prize-desc">4个红球 或 3红+1蓝</div>
+                                <div class="prize-condition">4+1</div>
+                                <div class="prize-desc">4个前区 + 1个后区</div>
                             </div>
                             <div class="prize-rule-item">
                                 <div class="prize-level">六等奖</div>
-                                <div class="prize-condition">2+1 / 1+1 / 0+1</div>
-                                <div class="prize-desc">有蓝球即中奖（5元）</div>
+                                <div class="prize-condition">3+2</div>
+                                <div class="prize-desc">3个前区 + 2个后区</div>
                             </div>
                         </div>
                         <div class="prize-rules-note">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
                             </svg>
-                            <span>红球从 01-33 中选择 6 个号码，蓝球从 01-16 中选择 1 个号码。每周二、四、日晚 21:15 开奖。</span>
+                            <span>前区从 01-35 中选择 5 个号码，后区从 01-12 中选择 2 个号码。每周一、三、六晚 21:25 开奖。</span>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                             </svg>
                         </div>
                         <div class="stat-card-content">
-                            <div class="stat-card-label">最热红球</div>
+                            <div class="stat-card-label">最热前区</div>
                             <div class="stat-card-value" id="statHottestRed">-</div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                             </svg>
                         </div>
                         <div class="stat-card-content">
-                            <div class="stat-card-label">最热蓝球</div>
+                            <div class="stat-card-label">最热后区</div>
                             <div class="stat-card-value" id="statHottestBlue">-</div>
                         </div>
                     </div>
@@ -262,7 +262,7 @@
 
                 <!-- Charts Grid -->
                 <div class="analysis-charts-grid">
-                    <!-- Red Ball Frequency Chart -->
+                    <!-- Front Zone Frequency Chart -->
                     <div class="chart-container">
                         <div class="chart-header">
                             <div class="chart-icon">
@@ -271,7 +271,7 @@
                                 </svg>
                             </div>
                             <div class="chart-title-wrapper">
-                                <h3>红球热度分布</h3>
+                                <h3>前区热度分布</h3>
                                 <p class="chart-description">各号码出现频次统计</p>
                             </div>
                         </div>
@@ -280,7 +280,7 @@
                         </div>
                     </div>
 
-                    <!-- Blue Ball Frequency Chart -->
+                    <!-- Back Zone Frequency Chart -->
                     <div class="chart-container">
                         <div class="chart-header">
                             <div class="chart-icon">
@@ -289,8 +289,8 @@
                                 </svg>
                             </div>
                             <div class="chart-title-wrapper">
-                                <h3>蓝球出现频率</h3>
-                                <p class="chart-description">蓝球号码分布情况</p>
+                                <h3>后区出现频率</h3>
+                                <p class="chart-description">后区号码分布情况</p>
                             </div>
                         </div>
                         <div class="chart-canvas">
@@ -308,7 +308,7 @@
                             </div>
                             <div class="chart-title-wrapper">
                                 <h3>奇偶比例分布</h3>
-                                <p class="chart-description">红球奇偶比统计</p>
+                                <p class="chart-description">前区奇偶比统计</p>
                             </div>
                         </div>
                         <div class="chart-canvas">
@@ -325,8 +325,8 @@
                                 </svg>
                             </div>
                             <div class="chart-title-wrapper">
-                                <h3>红球和值走势</h3>
-                                <p class="chart-description">近期红球总和变化趋势</p>
+                                <h3>前区和值走势</h3>
+                                <p class="chart-description">近期前区总和变化趋势</p>
                             </div>
                         </div>
                         <div class="chart-canvas">
@@ -344,7 +344,7 @@
                             </div>
                             <div class="chart-title-wrapper">
                                 <h3>区间分布统计</h3>
-                                <p class="chart-description">红球号码按区间（01-11、12-22、23-33）分布情况</p>
+                                <p class="chart-description">前区号码按区间（01-12、13-24、25-35）分布情况</p>
                             </div>
                         </div>
                         <div class="chart-canvas">
@@ -375,14 +375,14 @@
                         </div>
                         <div class="chart-title-wrapper">
                             <h3>历史命中表现趋势</h3>
-                            <p class="chart-description">红球 + 蓝球 · 每期最佳组合的命中表现</p>
+                            <p class="chart-description">前区 + 后区 · 每期最佳组合的命中表现</p>
                         </div>
                         <span class="accuracy-chart-count" id="accuracyChartCount"></span>
                     </div>
                     <div class="accuracy-chart-legend" id="accuracyChartLegend" role="group" aria-label="筛选趋势图数据系列"></div>
                     <div class="accuracy-chart-axis-label" aria-hidden="true">命中球数</div>
                     <div class="chart-canvas">
-                        <canvas id="accuracyChart" role="img" aria-label="历史命中表现趋势，展示各期最佳组合命中球数。详细数据见下方命中记录。"></canvas>
+                        <canvas id="accuracyChart" role="img" aria-label="历史命中表现趋势"></canvas>
                     </div>
                     <div class="accuracy-chart-footer">
                         <span id="accuracyChartRange"></span>
@@ -425,7 +425,7 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p class="footer-copyright">© 2025 Double Color Ball AI. Powered by Advanced LLMs.</p>
+                <p class="footer-copyright">© 2026 Super Lotto AI. Powered by Advanced LLMs.</p>
                 <p class="footer-disclaimer">仅供娱乐与统计分析，请理性购彩</p>
             </div>
         </footer>
@@ -433,8 +433,8 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="js/data-loader.js?v=20251124c"></script>
-    <script src="js/components.js?v=20251124c"></script>
-    <script src="js/app.js?v=20260922a"></script>
+    <script src="js/data-loader.js?v=20261013a"></script>
+    <script src="js/components.js?v=20261013a"></script>
+    <script src="js/app.js?v=20261013a"></script>
 </body>
 </html>
