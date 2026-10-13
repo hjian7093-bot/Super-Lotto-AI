@@ -250,12 +250,12 @@ def _valid_saved_model(model):
         gid, reds, blue = group.get("group_id"), group.get("front_balls"), group.get("back_balls")
         if type(gid) is not int or gid not in STRATEGIES or gid in group_ids:
             return False
-        if not isinstance(reds, list) or len(reds) != 6 or any(
+        if not isinstance(reds, list) or len(reds) != 5 or any(
                 not isinstance(b, str) or not re.fullmatch(r"[0-9]{2}", b) or not 1 <= int(b) <= 35 for b in reds):
             return False
-        if len(set(reds)) != 6 or reds != sorted(reds) or tuple(reds) in combinations:
+        if len(set(reds)) != 5 or reds != sorted(reds) or tuple(reds) in combinations:
             return False
-        if not isinstance(blue, str) or not re.fullmatch(r"[0-9]{2}", blue) or not 1 <= int(blue) <= 16:
+        if not isinstance(blue, list) or len(blue) != 2 or any(not isinstance(b, str) or not re.fullmatch(r"[0-9]{2}", b) or not 1 <= int(b) <= 12 for b in blue):
             return False
         if not isinstance(group.get("strategy"), str) or not group["strategy"] or not isinstance(group.get("description"), str):
             return False
