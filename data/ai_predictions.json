@@ -1,0 +1,102 @@
+{
+  "prediction_date": "2026-10-14",
+  "target_period": "26117",
+  "generated_at": "2026-10-13T10:00:00Z",
+  "generator_version": "4.1",
+  "status": "complete",
+  "failures": [],
+  "models": [
+    {
+      "model_id": "deepseek-chat",
+      "model_name": "DeepSeek V3",
+      "requested_model": "deepseek-chat",
+      "response_model": "deepseek-chat",
+      "validation_status": "passed",
+      "target_period": "26117",
+      "prediction_date": "2026-10-14",
+      "predictions": [
+        {
+          "group_id": 1,
+          "strategy": "热号追随",
+          "front_balls": ["03", "09", "18", "22", "35"],
+          "back_balls": ["01", "10"],
+          "description": "热号策略：近20期高频号组合"
+        },
+        {
+          "group_id": 2,
+          "strategy": "冷号回补",
+          "front_balls": ["05", "12", "20", "28", "33"],
+          "back_balls": ["06", "07"],
+          "description": "冷号策略：长期遗漏号组合"
+        },
+        {
+          "group_id": 3,
+          "strategy": "均衡配比",
+          "front_balls": ["02", "11", "19", "25", "31"],
+          "back_balls": ["03", "09"],
+          "description": "均衡策略：奇偶大小均衡"
+        },
+        {
+          "group_id": 4,
+          "strategy": "周期规律",
+          "front_balls": ["08", "15", "23", "29", "34"],
+          "back_balls": ["04", "12"],
+          "description": "周期策略：按遗漏周期选择"
+        },
+        {
+          "group_id": 5,
+          "strategy": "随机精选",
+          "front_balls": ["01", "07", "16", "27", "32"],
+          "back_balls": ["02", "08"],
+          "description": "随机策略：随机精选组合"
+        }
+      ]
+    },
+    {
+      "model_id": "deepseek-reasoner",
+      "model_name": "DeepSeek R1",
+      "requested_model": "deepseek-reasoner",
+      "response_model": "deepseek-reasoner",
+      "validation_status": "passed",
+      "target_period": "26117",
+      "prediction_date": "2026-10-14",
+      "predictions": [
+        {
+          "group_id": 1,
+          "strategy": "热号追随",
+          "front_balls": ["09", "18", "22", "32", "35"],
+          "back_balls": ["01", "10"],
+          "description": "热号策略：近20期高频号组合"
+        },
+        {
+          "group_id": 2,
+          "strategy": "冷号回补",
+          "front_balls": ["03", "14", "21", "29", "33"],
+          "back_balls": ["06", "07"],
+          "description": "冷号策略：长期遗漏号组合"
+        },
+        {
+          "group_id": 3,
+          "strategy": "均衡配比",
+          "front_balls": ["06", "13", "19", "26", "30"],
+          "back_balls": ["03", "09"],
+          "description": "均衡策略：奇偶大小均衡"
+        },
+        {
+          "group_id": 4,
+          "strategy": "周期规律",
+          "front_balls": ["04", "17", "24", "28", "34"],
+          "back_balls": ["04", "12"],
+          "description": "周期策略：按遗漏周期选择"
+        },
+        {
+          "group_id": 5,
+          "strategy": "随机精选",
+          "front_balls": ["02", "10", "20", "27", "31"],
+          "back_balls": ["02", "08"],
+          "description": "随机策略：随机精选组合"
+        }
+      ]
+    }
+  ]
+}
