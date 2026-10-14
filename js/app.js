@@ -356,6 +356,7 @@ function renderHistoryTable() {
     tableBodyEl.innerHTML = '';
 
     appData.lotteryHistory.data.forEach(draw => {
+        if (!draw.front_balls || !draw.back_balls || draw.front_balls.length !== 5 || draw.back_balls.length !== 2) return;
         const row = Components.createHistoryTableRow(draw);
         tableBodyEl.appendChild(row);
     });
@@ -375,7 +376,7 @@ function renderFrequencyChart() {
     }
 
     appData.lotteryHistory.data.forEach(draw => {
-        if (!draw.front_balls || !draw.back_balls) return;
+        if (!draw.front_balls || !draw.back_balls || draw.front_balls.length !== 5 || draw.back_balls.length !== 2) return;
         draw.front_balls.forEach(ball => {
             frequency[ball] = (frequency[ball] || 0) + 1;
         });
@@ -426,7 +427,7 @@ function renderStatisticsCards() {
     let totalSum = 0;
 
     appData.lotteryHistory.data.forEach(draw => {
-        if (!draw.front_balls || !draw.back_balls) return;
+        if (!draw.front_balls || !draw.back_balls || draw.front_balls.length !== 5 || draw.back_balls.length !== 2) return;
         draw.front_balls.forEach(ball => {
             frontFrequency[ball] = (frontFrequency[ball] || 0) + 1;
         });
@@ -467,7 +468,7 @@ function renderBlueFrequencyChart() {
     }
 
     appData.lotteryHistory.data.forEach(draw => {
-        if (!draw.front_balls || !draw.back_balls) return;
+        if (!draw.front_balls || !draw.back_balls || draw.front_balls.length !== 5 || draw.back_balls.length !== 2) return;
         draw.back_balls.forEach(ball => {
             frequency[ball] = (frequency[ball] || 0) + 1;
         });
@@ -510,6 +511,7 @@ function renderOddEvenChart() {
     const frontCount = LOTTERY_CONFIG.frontCount;
 
     appData.lotteryHistory.data.forEach(draw => {
+        if (!draw.front_balls || !draw.back_balls || draw.front_balls.length !== 5 || draw.back_balls.length !== 2) return;
         const oddCount = draw.front_balls.filter(ball => parseInt(ball) % 2 === 1).length;
         const evenCount = frontCount - oddCount;
         const ratio = `${oddCount}:${evenCount}`;
@@ -620,7 +622,7 @@ function renderZoneDistributionChart() {
     const zones = { '01-12': 0, '13-24': 0, '25-35': 0 };
 
     appData.lotteryHistory.data.forEach(draw => {
-        if (!draw.front_balls || !draw.back_balls) return;
+        if (!draw.front_balls || !draw.back_balls || draw.front_balls.length !== 5 || draw.back_balls.length !== 2) return;
         draw.front_balls.forEach(ball => {
             const num = parseInt(ball);
             if (num >= 1 && num <= 12) zones['01-12']++;
