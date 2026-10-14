@@ -150,7 +150,8 @@ function renderAccuracyChart() {
         : '暂无历史记录';
 
     Chart.getChart(chartEl)?.destroy();
-    const chart = new Chart(chartEl, {
+    const chart = Chart.getChart(chartEl)?.destroy();
+    new Chart(chartEl, {
         type: 'line',
         data: {
             labels: chartData.labels,
@@ -384,6 +385,7 @@ function renderFrequencyChart() {
     const labels = Object.keys(frequency).sort();
     const data = labels.map(label => frequency[label]);
 
+    Chart.getChart(chartEl)?.destroy();
     new Chart(chartEl, {
         type: 'bar',
         data: {
@@ -466,6 +468,7 @@ function renderBlueFrequencyChart() {
     }
 
     appData.lotteryHistory.data.forEach(draw => {
+        if (!draw.front_balls || !draw.back_balls) return;
         draw.back_balls.forEach(ball => {
             frequency[ball] = (frequency[ball] || 0) + 1;
         });
@@ -474,6 +477,7 @@ function renderBlueFrequencyChart() {
     const labels = Object.keys(frequency).sort();
     const data = labels.map(label => frequency[label]);
 
+    Chart.getChart(chartEl)?.destroy();
     new Chart(chartEl, {
         type: 'bar',
         data: {
@@ -518,6 +522,7 @@ function renderOddEvenChart() {
     const labels = commonRatios.filter(r => ratioCount[r]);
     const data = labels.map(label => ratioCount[label] || 0);
 
+    Chart.getChart(chartEl)?.destroy();
     new Chart(chartEl, {
         type: 'doughnut',
         data: {
@@ -561,6 +566,7 @@ function renderSumTrendChart() {
 
     const avgSum = sums.reduce((a, b) => a + b, 0) / sums.length;
 
+    Chart.getChart(chartEl)?.destroy();
     new Chart(chartEl, {
         type: 'line',
         data: {
@@ -627,6 +633,7 @@ function renderZoneDistributionChart() {
     const labels = Object.keys(zones);
     const data = Object.values(zones);
 
+    Chart.getChart(chartEl)?.destroy();
     new Chart(chartEl, {
         type: 'bar',
         data: {
