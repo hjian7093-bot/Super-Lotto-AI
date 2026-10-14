@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 主应用逻辑 - 大乐透版本
  */
 
@@ -375,6 +375,7 @@ function renderFrequencyChart() {
     }
 
     appData.lotteryHistory.data.forEach(draw => {
+        if (!draw.front_balls || !draw.back_balls) return;
         draw.front_balls.forEach(ball => {
             frequency[ball] = (frequency[ball] || 0) + 1;
         });
@@ -424,6 +425,7 @@ function renderStatisticsCards() {
     let totalSum = 0;
 
     appData.lotteryHistory.data.forEach(draw => {
+        if (!draw.front_balls || !draw.back_balls) return;
         draw.front_balls.forEach(ball => {
             frontFrequency[ball] = (frontFrequency[ball] || 0) + 1;
         });
@@ -613,6 +615,7 @@ function renderZoneDistributionChart() {
     const zones = { '01-12': 0, '13-24': 0, '25-35': 0 };
 
     appData.lotteryHistory.data.forEach(draw => {
+        if (!draw.front_balls || !draw.back_balls) return;
         draw.front_balls.forEach(ball => {
             const num = parseInt(ball);
             if (num >= 1 && num <= 12) zones['01-12']++;
