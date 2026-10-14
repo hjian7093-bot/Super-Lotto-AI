@@ -150,8 +150,7 @@ function renderAccuracyChart() {
         : '暂无历史记录';
 
     Chart.getChart(chartEl)?.destroy();
-    const chart = Chart.getChart(chartEl)?.destroy();
-    new Chart(chartEl, {
+    const chart = new Chart(chartEl, {
         type: 'line',
         data: {
             labels: chartData.labels,
