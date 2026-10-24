@@ -118,7 +118,8 @@ class LotteryDataFetcher:
         return data_list
 
     def merge_with_existing_data(self, new_data, existing_file):
-        """合并新数据和现有数据，去重并保留所有历史记录"""
+        """合并新数据和现有数据，去重并保留所有历史记录
+        仅保留大乐透正确格式的记录（前区5个 + 后区2个）"""
         existing_data = []
         if os.path.exists(existing_file):
             try:
@@ -128,12 +129,38 @@ class LotteryDataFetcher:
             except Exception as e:
                 print(f"加载现有数据时出错: {e}")
 
+        def is_valid(item):
+            """校验是否为合法的大乐透记录：前区恰好5个、后区恰好2个，均为两位数"""
+            try:
+                if not isinstance(item, dict):
+                    return False
+                front = item.get('front_balls')
+                back = item.get('back_balls')
+                if not isinstance(front, list) or len(front) != 5:
+                    return False
+                if not isinstance(back, list) or len(back) != 2:
+                    return False
+                if not all(isinstance(b, str) and b.isdigit() and len(b) == 2 for b in front + back):
+                    return False
+                return True
+            except Exception:
+                return False
+
+        # 过滤现有数据中的错误格式
+        before_filter = len(existing_data)
+        existing_data = [item for item in existing_data if is_valid(item)]
+        if before_filter != len(existing_data):
+            print(f"⚠️  已过滤掉 {before_filter - len(existing_data)} 期格式错误的历史数据")
+
         data_dict = {}
         for item in existing_data:
             data_dict[item['period']] = item
 
         new_count = 0
         for item in new_data:
+            if not is_valid(item):
+                print(f"⚠️  跳过格式错误的期号: {item.get('period', '未知')}")
+                continue
             if item['period'] not in data_dict:
                 new_count += 1
             data_dict[item['period']] = item
