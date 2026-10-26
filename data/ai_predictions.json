@@ -1,8 +1,9 @@
 {
-  "prediction_date": "2026-10-14",
-  "target_period": "26117",
-  "generated_at": "2026-10-13T10:00:00Z",
+  "prediction_date": "2026-10-26",
+  "target_period": "26122",
+  "generated_at": "2026-10-26T04:28:24+00:00",
   "generator_version": "4.1",
+  "input_fingerprint": "35b7f270c09ed47bebda94dde84f423129f4365ecc67bd424d330eafee2e44cd",
   "status": "complete",
   "failures": [],
   "models": [
@@ -10,93 +11,199 @@
       "model_id": "deepseek-chat",
       "model_name": "DeepSeek V3",
       "requested_model": "deepseek-chat",
-      "response_model": "deepseek-chat",
+      "response_model": "deepseek-flash",
       "validation_status": "passed",
-      "target_period": "26117",
-      "prediction_date": "2026-10-14",
       "predictions": [
         {
+          "candidate_id": "1-01",
           "group_id": 1,
-          "strategy": "热号追随",
-          "front_balls": ["03", "09", "18", "22", "35"],
-          "back_balls": ["01", "10"],
-          "description": "热号策略：近20期高频号组合"
+          "front_balls": [
+            "01",
+            "03",
+            "10",
+            "15",
+            "32"
+          ],
+          "back_balls": [
+            "09",
+            "12"
+          ],
+          "strategy": "增强型热号追随者",
+          "description": "01热度21、调整分21.0；区间3-1-1；后区09-12近20期5次"
         },
         {
+          "candidate_id": "2-01",
           "group_id": 2,
-          "strategy": "冷号回补",
-          "front_balls": ["05", "12", "20", "28", "33"],
-          "back_balls": ["06", "07"],
-          "description": "冷号策略：长期遗漏号组合"
+          "front_balls": [
+            "07",
+            "14",
+            "16",
+            "23",
+            "28"
+          ],
+          "back_balls": [
+            "09",
+            "10"
+          ],
+          "strategy": "增强型冷号逆向者",
+          "description": "07遗漏13期；奇偶2:3、大小2:3；尾数5种；后区09-10",
+          "adjustments": [
+            "后区无遗漏8-15期候选，扩展至3-20期"
+          ]
         },
         {
+          "candidate_id": "3-01",
           "group_id": 3,
-          "strategy": "均衡配比",
-          "front_balls": ["02", "11", "19", "25", "31"],
-          "back_balls": ["03", "09"],
-          "description": "均衡策略：奇偶大小均衡"
+          "front_balls": [
+            "04",
+            "05",
+            "07",
+            "18",
+            "27"
+          ],
+          "back_balls": [
+            "03",
+            "08"
+          ],
+          "strategy": "增强型平衡策略师",
+          "description": "奇偶3:2、大小2:3；和值61、连号1对；区间3-1-1；后区03-08"
         },
         {
+          "candidate_id": "4-01",
           "group_id": 4,
-          "strategy": "周期规律",
-          "front_balls": ["08", "15", "23", "29", "34"],
-          "back_balls": ["04", "12"],
-          "description": "周期策略：按遗漏周期选择"
+          "front_balls": [
+            "01",
+            "06",
+            "19",
+            "24",
+            "32"
+          ],
+          "back_balls": [
+            "10",
+            "12"
+          ],
+          "strategy": "增强型周期理论家",
+          "description": "01趋势+5.0、周期分+25.0；后区10-12、平均空期6.2期"
         },
         {
+          "candidate_id": "5-01",
           "group_id": 5,
-          "strategy": "随机精选",
-          "front_balls": ["01", "07", "16", "27", "32"],
-          "back_balls": ["02", "08"],
-          "description": "随机策略：随机精选组合"
+          "front_balls": [
+            "04",
+            "06",
+            "19",
+            "23",
+            "32"
+          ],
+          "back_balls": [
+            "06",
+            "12"
+          ],
+          "strategy": "增强型综合决策者",
+          "description": "04综合45.2；奇偶2:3、大小3:2；和值84；后区06-12"
         }
-      ]
+      ],
+      "target_period": "26122",
+      "prediction_date": "2026-10-26"
     },
     {
       "model_id": "deepseek-reasoner",
       "model_name": "DeepSeek R1",
       "requested_model": "deepseek-reasoner",
-      "response_model": "deepseek-reasoner",
+      "response_model": "deepseek-flash",
       "validation_status": "passed",
-      "target_period": "26117",
-      "prediction_date": "2026-10-14",
       "predictions": [
         {
+          "candidate_id": "1-01",
           "group_id": 1,
-          "strategy": "热号追随",
-          "front_balls": ["09", "18", "22", "32", "35"],
-          "back_balls": ["01", "10"],
-          "description": "热号策略：近20期高频号组合"
+          "front_balls": [
+            "01",
+            "03",
+            "10",
+            "15",
+            "32"
+          ],
+          "back_balls": [
+            "09",
+            "12"
+          ],
+          "strategy": "增强型热号追随者",
+          "description": "01热度21、调整分21.0；区间3-1-1；后区09-12近20期5次"
         },
         {
+          "candidate_id": "2-01",
           "group_id": 2,
-          "strategy": "冷号回补",
-          "front_balls": ["03", "14", "21", "29", "33"],
-          "back_balls": ["06", "07"],
-          "description": "冷号策略：长期遗漏号组合"
+          "front_balls": [
+            "07",
+            "14",
+            "16",
+            "23",
+            "28"
+          ],
+          "back_balls": [
+            "09",
+            "10"
+          ],
+          "strategy": "增强型冷号逆向者",
+          "description": "07遗漏13期；奇偶2:3、大小2:3；尾数5种；后区09-10",
+          "adjustments": [
+            "后区无遗漏8-15期候选，扩展至3-20期"
+          ]
         },
         {
+          "candidate_id": "3-01",
           "group_id": 3,
-          "strategy": "均衡配比",
-          "front_balls": ["06", "13", "19", "26", "30"],
-          "back_balls": ["03", "09"],
-          "description": "均衡策略：奇偶大小均衡"
+          "front_balls": [
+            "04",
+            "05",
+            "07",
+            "18",
+            "27"
+          ],
+          "back_balls": [
+            "03",
+            "08"
+          ],
+          "strategy": "增强型平衡策略师",
+          "description": "奇偶3:2、大小2:3；和值61、连号1对；区间3-1-1；后区03-08"
         },
         {
+          "candidate_id": "4-02",
           "group_id": 4,
-          "strategy": "周期规律",
-          "front_balls": ["04", "17", "24", "28", "34"],
-          "back_balls": ["04", "12"],
-          "description": "周期策略：按遗漏周期选择"
+          "front_balls": [
+            "06",
+            "08",
+            "19",
+            "24",
+            "32"
+          ],
+          "back_balls": [
+            "10",
+            "12"
+          ],
+          "strategy": "增强型周期理论家",
+          "description": "06趋势+45.0、周期分+45.0；后区10-12、平均空期6.2期"
         },
         {
+          "candidate_id": "5-06",
           "group_id": 5,
-          "strategy": "随机精选",
-          "front_balls": ["02", "10", "20", "27", "31"],
-          "back_balls": ["02", "08"],
-          "description": "随机策略：随机精选组合"
+          "front_balls": [
+            "02",
+            "06",
+            "09",
+            "23",
+            "32"
+          ],
+          "back_balls": [
+            "06",
+            "12"
+          ],
+          "strategy": "增强型综合决策者",
+          "description": "02综合44.6；奇偶2:3、大小2:3；和值72；后区06-12"
         }
-      ]
+      ],
+      "target_period": "26122",
+      "prediction_date": "2026-10-26"
     }
   ]
 }
