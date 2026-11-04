@@ -1,6 +1,314 @@
 {
   "predictions_history": [
     {
+      "prediction_date": "2026-10-31",
+      "target_period": "26124",
+      "actual_result": {
+        "period": "26124",
+        "front_balls": [
+          "12",
+          "14",
+          "18",
+          "22",
+          "27"
+        ],
+        "back_balls": [
+          "01",
+          "09"
+        ],
+        "date": "2026-10-31"
+      },
+      "models": [
+        {
+          "model_id": "deepseek-chat",
+          "model_name": "DeepSeek V3",
+          "requested_model": "deepseek-chat",
+          "response_model": "deepseek-flash",
+          "validation_status": "passed",
+          "predictions": [
+            {
+              "candidate_id": "1-01",
+              "group_id": 1,
+              "front_balls": [
+                "02",
+                "06",
+                "14",
+                "24",
+                "25"
+              ],
+              "back_balls": [
+                "03",
+                "04"
+              ],
+              "strategy": "增强型热号追随者",
+              "description": "02热度23、调整分23.0；区间2-2-1；后区03-04近20期3次",
+              "hit_result": {
+                "front_hits": [
+                  "14"
+                ],
+                "front_hit_count": 1,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 1
+              }
+            },
+            {
+              "candidate_id": "2-01",
+              "group_id": 2,
+              "front_balls": [
+                "07",
+                "16",
+                "23",
+                "27",
+                "28"
+              ],
+              "back_balls": [
+                "06",
+                "10"
+              ],
+              "strategy": "增强型冷号逆向者",
+              "description": "07遗漏15期；奇偶3:2、大小3:2；尾数4种；后区06-10",
+              "adjustments": [
+                "后区无遗漏8-15期候选，扩展至3-20期"
+              ],
+              "hit_result": {
+                "front_hits": [
+                  "27"
+                ],
+                "front_hit_count": 1,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 1
+              }
+            },
+            {
+              "candidate_id": "3-01",
+              "group_id": 3,
+              "front_balls": [
+                "04",
+                "05",
+                "07",
+                "18",
+                "28"
+              ],
+              "back_balls": [
+                "03",
+                "06"
+              ],
+              "strategy": "增强型平衡策略师",
+              "description": "奇偶2:3、大小2:3；和值62、连号1对；区间3-1-1；后区03-06",
+              "hit_result": {
+                "front_hits": [
+                  "18"
+                ],
+                "front_hit_count": 1,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 1
+              }
+            },
+            {
+              "candidate_id": "4-01",
+              "group_id": 4,
+              "front_balls": [
+                "06",
+                "13",
+                "19",
+                "20",
+                "24"
+              ],
+              "back_balls": [
+                "04",
+                "07"
+              ],
+              "strategy": "增强型周期理论家",
+              "description": "06趋势+40.0、周期分+40.0；后区04-07、平均空期3.1期",
+              "hit_result": {
+                "front_hits": [],
+                "front_hit_count": 0,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 0
+              }
+            },
+            {
+              "candidate_id": "5-01",
+              "group_id": 5,
+              "front_balls": [
+                "06",
+                "15",
+                "23",
+                "24",
+                "32"
+              ],
+              "back_balls": [
+                "04",
+                "10"
+              ],
+              "strategy": "增强型综合决策者",
+              "description": "06综合61.7；奇偶2:3、大小3:2；和值100；后区04-10",
+              "hit_result": {
+                "front_hits": [],
+                "front_hit_count": 0,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 0
+              }
+            }
+          ],
+          "target_period": "26124",
+          "prediction_date": "2026-10-31",
+          "best_group": 1,
+          "best_hit_count": 1
+        },
+        {
+          "model_id": "deepseek-reasoner",
+          "model_name": "DeepSeek R1",
+          "requested_model": "deepseek-reasoner",
+          "response_model": "deepseek-flash",
+          "validation_status": "passed",
+          "predictions": [
+            {
+              "candidate_id": "1-01",
+              "group_id": 1,
+              "front_balls": [
+                "02",
+                "06",
+                "14",
+                "24",
+                "25"
+              ],
+              "back_balls": [
+                "03",
+                "04"
+              ],
+              "strategy": "增强型热号追随者",
+              "description": "02热度23、调整分23.0；区间2-2-1；后区03-04近20期3次",
+              "hit_result": {
+                "front_hits": [
+                  "14"
+                ],
+                "front_hit_count": 1,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 1
+              }
+            },
+            {
+              "candidate_id": "2-01",
+              "group_id": 2,
+              "front_balls": [
+                "07",
+                "16",
+                "23",
+                "27",
+                "28"
+              ],
+              "back_balls": [
+                "06",
+                "10"
+              ],
+              "strategy": "增强型冷号逆向者",
+              "description": "07遗漏15期；奇偶3:2、大小3:2；尾数4种；后区06-10",
+              "adjustments": [
+                "后区无遗漏8-15期候选，扩展至3-20期"
+              ],
+              "hit_result": {
+                "front_hits": [
+                  "27"
+                ],
+                "front_hit_count": 1,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 1
+              }
+            },
+            {
+              "candidate_id": "3-02",
+              "group_id": 3,
+              "front_balls": [
+                "04",
+                "05",
+                "07",
+                "18",
+                "29"
+              ],
+              "back_balls": [
+                "03",
+                "06"
+              ],
+              "strategy": "增强型平衡策略师",
+              "description": "奇偶3:2、大小2:3；和值63、连号1对；区间3-1-1；后区03-06",
+              "hit_result": {
+                "front_hits": [
+                  "18"
+                ],
+                "front_hit_count": 1,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 1
+              }
+            },
+            {
+              "candidate_id": "4-01",
+              "group_id": 4,
+              "front_balls": [
+                "06",
+                "13",
+                "19",
+                "20",
+                "24"
+              ],
+              "back_balls": [
+                "04",
+                "07"
+              ],
+              "strategy": "增强型周期理论家",
+              "description": "06趋势+40.0、周期分+40.0；后区04-07、平均空期3.1期",
+              "hit_result": {
+                "front_hits": [],
+                "front_hit_count": 0,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 0
+              }
+            },
+            {
+              "candidate_id": "5-02",
+              "group_id": 5,
+              "front_balls": [
+                "08",
+                "15",
+                "23",
+                "24",
+                "32"
+              ],
+              "back_balls": [
+                "04",
+                "10"
+              ],
+              "strategy": "增强型综合决策者",
+              "description": "08综合43.3；奇偶2:3、大小3:2；和值102；后区04-10",
+              "hit_result": {
+                "front_hits": [],
+                "front_hit_count": 0,
+                "back_hits": [],
+                "back_hit_count": 0,
+                "total_hits": 0
+              }
+            }
+          ],
+          "target_period": "26124",
+          "prediction_date": "2026-10-31",
+          "best_group": 1,
+          "best_hit_count": 1
+        }
+      ],
+      "generated_at": "2026-10-30T05:31:16+00:00",
+      "generator_version": "4.1",
+      "input_fingerprint": "06e64b5425476cf1a27a0521b0421eff8a5cc2e34b9938f4aaabfa23adad97a1"
+    },
+    {
       "prediction_date": "2026-10-26",
       "target_period": "26122",
       "actual_result": {
